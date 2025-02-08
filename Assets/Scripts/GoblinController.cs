@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GoblinController : EnemyBase
 {
-    protected override void Start()
+    void Start()
     {
         base.Start();
         speed = 2.5f;
