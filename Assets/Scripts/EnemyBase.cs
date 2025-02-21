@@ -9,8 +9,9 @@ using Random = UnityEngine.Random;
 public class EnemyBase : MonoBehaviour
 {
     protected float speed = 1.0f;
-    public GameObject arrowImagePrefab; // Prefab chứa UI Image
-    public Transform arrowContainer; // Vị trí để chứa các mũi tên
+    bool isDead = false;
+    public GameObject arrowImagePrefab;
+    public Transform arrowContainer;
     public Sprite upArrowSprite, downArrowSprite, leftArrowSprite, rightArrowSprite;
     private List<KeyCode> arrowSequence = new List<KeyCode>();
     private int currentIndex = 0;
@@ -27,7 +28,7 @@ public class EnemyBase : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        if (!isDead) Move();
     }
 
     void GenerateArrowSequence()
@@ -99,8 +100,10 @@ public class EnemyBase : MonoBehaviour
     }
     public void TakeDamage()
     {
+        isDead = true;
         arrowContainer.gameObject.SetActive(false);
         animator.SetTrigger("Death");
+        UIManager.Instance.updateScore(10);
         StartCoroutine(ReturnToPoolAfterAnimation());
     }
 
@@ -108,18 +111,15 @@ public class EnemyBase : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         EnemyPoolManager.Instance.ReturnToPool(gameObject);
+        isDead = false;
     }
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Base"))
-        {
-            /*other.GetComponent<BaseHealth>().TakeDamage(damage);*/
-            Destroy(gameObject);
-        }
     }
     private void OnEnable()
     {
         arrowContainer.gameObject.SetActive(true);
+        speed = Random.Range(2.5f, 5f);
         GenerateArrowSequence();
         currentIndex = 0; // Reset trạng thái
     }

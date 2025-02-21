@@ -7,6 +7,5 @@ public class GoblinController : EnemyBase
     void Start()
     {
         base.Start();
-        speed = 2.5f;
     }
 }

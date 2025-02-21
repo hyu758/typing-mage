@@ -35,8 +35,10 @@ public class EnemyPoolManager : MonoBehaviour
             GameObject enemy = enemyPools[enemyType].Dequeue();
             enemy.transform.position = position;
             enemy.SetActive(true);
+            Debug.Log($"Spawned enemy {enemyType}. Pool size còn lại: {enemyPools[enemyType].Count}");
             return enemy;
         }
+        Debug.LogWarning($"Không thể spawn enemy {enemyType}, pool đã hết!");
         return null;
     }
 
@@ -47,6 +49,11 @@ public class EnemyPoolManager : MonoBehaviour
         if (enemyPools.ContainsKey(enemyType))
         {
             enemyPools[enemyType].Enqueue(enemy);
+            Debug.Log($"Enemy {enemyType} đã quay lại pool. Pool size: {enemyPools[enemyType].Count}");
+        }
+        else
+        {
+            Debug.LogWarning($"Enemy {enemyType} không thuộc pool nào!");
         }
     }
 }
