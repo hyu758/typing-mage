@@ -626,8 +626,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Typing Mage
-  metroPackageVersion: 
+  metroPackageName: TypingMage
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -635,7 +635,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Typing Mage
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Typing Mage
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (GameManager.Instance.IsGameOver || GameManager.Instance.IsGamePaused) return;
         if (Input.GetKeyDown(KeyCode.UpArrow)) HandleInput(KeyCode.UpArrow);
         if (Input.GetKeyDown(KeyCode.DownArrow)) HandleInput(KeyCode.DownArrow);
         if (Input.GetKeyDown(KeyCode.LeftArrow)) HandleInput(KeyCode.LeftArrow);

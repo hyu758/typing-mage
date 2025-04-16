@@ -103,7 +103,7 @@ public class EnemyBase : MonoBehaviour
         isDead = true;
         arrowContainer.gameObject.SetActive(false);
         animator.SetTrigger("Death");
-        UIManager.Instance.updateScore(10);
+        GameManager.Instance.AddScore(10);
         StartCoroutine(ReturnToPoolAfterAnimation());
     }
 
