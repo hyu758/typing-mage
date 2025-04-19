@@ -33,17 +33,8 @@ public class HomeManager : MonoBehaviour
         nameInputDisplay.SetActive(false);
         leaderboardDisplay.SetActive(false);
         loadingPanel.SetActive(false);
-        var loginRequest = new LoginWithCustomIDRequest
-        {
-            CustomId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
-        };
-        PlayFabClientAPI.LoginWithCustomID(loginRequest,
-            result => Debug.Log("[PlayFab] Anonymous login thành công"),
-            error => Debug.LogError("[PlayFab] Login ẩn danh lỗi: " + error.GenerateErrorReport())
-        );
+        
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -189,6 +180,19 @@ public class HomeManager : MonoBehaviour
         GameObject.Find("PlayButton").SetActive(false);
         GameObject.Find("ShowLeaderboard").SetActive(false);
 
+    }
+
+    private void OnEnable()
+    {
+        var loginRequest = new LoginWithCustomIDRequest
+        {
+            CustomId = SystemInfo.deviceUniqueIdentifier,
+            CreateAccount = true
+        };
+        PlayFabClientAPI.LoginWithCustomID(loginRequest,
+            result => Debug.Log("[PlayFab] Anonymous login thành công"),
+            error => Debug.LogError("[PlayFab] Login ẩn danh lỗi: " + error.GenerateErrorReport())
+        );
     }
 }
 
