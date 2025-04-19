@@ -151,7 +151,7 @@ public class GameManager : Subject
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("HomeScence");
+        SceneManager.LoadScene("HomeScene");
     }
 
     public void RestartGame()
