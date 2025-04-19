@@ -24,13 +24,11 @@ public class SoundNarrationSystem : MonoBehaviour, IObserver
 
     private void Start()
     {
-        // Đăng ký làm observer
         GameManager.Instance.AddObserver(this);
     }
 
     private void OnDestroy()
     {
-        // Hủy đăng ký observer khi object bị destroy
         if (GameManager.Instance != null)
         {
             GameManager.Instance.RemoveObserver(this);
@@ -67,14 +65,12 @@ public class SoundNarrationSystem : MonoBehaviour, IObserver
 
     private void HandleGameStart()
     {
-        // Phát nhạc nền
         if (musicSource != null && gameStartMusic != null)
         {
             musicSource.clip = gameStartMusic;
             musicSource.Play();
         }
 
-        // Phát narration
         if (narrationSource != null && gameStartNarration != null)
         {
             narrationSource.clip = gameStartNarration;
@@ -84,14 +80,12 @@ public class SoundNarrationSystem : MonoBehaviour, IObserver
 
     private void HandleGameOver()
     {
-        // Phát nhạc game over
         if (musicSource != null && gameOverMusic != null)
         {
             musicSource.clip = gameOverMusic;
             musicSource.Play();
         }
 
-        // Phát narration game over
         if (narrationSource != null && gameOverNarration != null)
         {
             narrationSource.clip = gameOverNarration;
@@ -101,10 +95,7 @@ public class SoundNarrationSystem : MonoBehaviour, IObserver
 
     private void HandlePlayerDeath()
     {
-        // Phát âm thanh chết
         PlaySound(playerDeathSound);
-
-        // Phát narration
         if (narrationSource != null && playerDeathNarration != null)
         {
             narrationSource.clip = playerDeathNarration;
@@ -114,10 +105,7 @@ public class SoundNarrationSystem : MonoBehaviour, IObserver
 
     private void HandleScoreChange(int score)
     {
-        // Phát âm thanh ghi điểm
         PlaySound(scoreSound);
-
-        // Phát narration tương ứng với điểm số
         if (narrationSource != null && scoreNarrations != null && scoreNarrations.Length > 0)
         {
             int narrationIndex = Mathf.Min(score / 1000, scoreNarrations.Length - 1);

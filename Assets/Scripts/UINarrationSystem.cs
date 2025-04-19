@@ -90,7 +90,7 @@ public class UINarrationSystem : MonoBehaviour, IObserver
 
     public void ResumeGame()
     {
-        Time.timeScale = 1; // Resume the game
+        Time.timeScale = 1;
         pausePanel.SetActive(false);
         gameManager.SetGameState("IsPaused", false);
     }

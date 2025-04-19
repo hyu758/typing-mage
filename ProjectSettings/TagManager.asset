@@ -42,6 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2596989893
+    locked: 0
   - name: Ground
     uniqueID: 2500741223
     locked: 0
@@ -53,4 +56,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 2012296461
+    locked: 0
+  - name: Popup
+    uniqueID: 3294480615
     locked: 0

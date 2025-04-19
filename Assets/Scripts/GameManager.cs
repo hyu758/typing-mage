@@ -1,6 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using PlayFab.ClientModels;
+using PlayFab;
 
 public class GameManager : Subject
 {
@@ -101,8 +103,25 @@ public class GameManager : Subject
 
     public void GameOver()
     {
+
         SetGameState("IsGameOver", true);
         NotifyObservers("GameOver", null);
+        int finalScore = GetGameState<int>("Score");
+        var request = new UpdatePlayerStatisticsRequest
+        {
+            Statistics = new List<StatisticUpdate>
+        {
+            new StatisticUpdate
+            {
+                StatisticName = "HighScore",
+                Value = finalScore
+            }
+        }
+        };
+        PlayFabClientAPI.UpdatePlayerStatistics(request,
+            result => Debug.Log($"[PlayFab] Upload điểm thành công: {finalScore}"),
+            error => Debug.LogError("[PlayFab] Lỗi khi upload điểm: " + error.GenerateErrorReport())
+        );
     }
 
     public void PauseGame()

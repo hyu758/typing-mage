@@ -121,7 +121,7 @@ public class EnemyBase : MonoBehaviour
         arrowContainer.gameObject.SetActive(true);
         speed = Random.Range(2.5f, 5f);
         GenerateArrowSequence();
-        currentIndex = 0; // Reset trạng thái
+        currentIndex = 0;
     }
 
 }
